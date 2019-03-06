@@ -36,7 +36,8 @@ namespace Lesson2ModelleringEntity
             else
             {
                 Console.WriteLine("Songs in database:");
-                Program.database.Song.ToList().ForEach(x => Console.WriteLine($"- {x.TrackNumber} {x.Title}, " +
+                Program.database.Song.Include(s => s.Album.Artist).ToList()
+                    .ForEach(x => Console.WriteLine($"- {x.TrackNumber} {x.Title} ({x.Album.Title} by {x.Album.Artist.Name}), " +
                     $"Length: {x.Length / 60:00}:{x.Length % 60:00}," +$" has music video: {(x.HasMusicVideo == true ? "Yes" : "No")}"));
             }
         }

@@ -82,7 +82,7 @@ namespace Lesson2ModelleringEntity
         static void ListArtistsByCountry()
         {
             Console.WriteLine("List Artists By Country");
-            string country = ReadInput.ReadString("Please enter a country: ");
+            string country = ReadInput.Reader<string>("Please enter a country: ");
             Console.WriteLine($"Artist from {country}");
             Program.database.Artist.Where(a => a.Country == country).ToList().ForEach(a => Console.WriteLine($"- {a.Name}"));
         }
