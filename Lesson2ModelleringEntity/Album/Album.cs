@@ -11,6 +11,7 @@ namespace Lesson2ModelleringEntity
         public int ID { get; set; }
         public string Title { get; set; }
         public DateTime ReleaseDate { get; set; }
+        [Required]
         public Artist Artist{ get; set; }
         public List<Song> Songs { get; set; }
     }

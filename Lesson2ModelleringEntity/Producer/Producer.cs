@@ -3,16 +3,13 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace Lesson2ModelleringEntity
+namespace Lesson2ModelleringEntity.Producer
 {
-    public class Artist
+    class Producer
     {
         [Key]
         public int ID { get; set; }
         public string Name { get; set; }
         public string Country { get; set; }
-        public Int16 YearStarted { get; set; }
-        [Required]
-        public List<Album> Albums { get; set; }
     }
 }

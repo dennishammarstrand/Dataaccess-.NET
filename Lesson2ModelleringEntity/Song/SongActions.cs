@@ -45,17 +45,20 @@ namespace Lesson2ModelleringEntity
         static void Add()
         {
             ReadInput.WriteUnderlined("Add New Song");
-            Album[] albums = Program.database.Album.ToArray();
-            Option<Album>[] list = albums.Select(x => new Option<Album>(x.Title, x)).ToArray();
+            Artist[] artists = Program.database.Artist.ToArray();
+            Option<Artist>[] artistMenu = artists.Select(x => new Option<Artist>(x.Name, x)).ToArray();
 
             Song song = new Song
             {
                 TrackNumber = ReadInput.Reader<int>("TrackNumber"),
                 Title = ReadInput.Reader<string>("Title"),
                 Length = (Int16)ReadInput.Reader<int>("Length"),
-                HasMusicVideo = ReadInput.Reader<bool>("Has Music Video (Y/N)"),
-                Album = Menu.ShowMenu("Album: ", list)
+                HasMusicVideo = ReadInput.Reader<bool>("Has Music Video (Y/N)")
             };
+            var artist = Menu.ShowMenu("Artist: ", artistMenu);
+            Album[] albums = Program.database.Album.Where(x => x.Artist == artist).ToArray();
+            Option<Album>[] albumMenu = albums.Select(x => new Option<Album>(x.Title, x)).ToArray();
+            song.Album = Menu.ShowMenu("Album: ", albumMenu);
             Program.database.Add(song);
             Program.database.SaveChanges();
         }

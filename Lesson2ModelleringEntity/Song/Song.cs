@@ -14,6 +14,7 @@ namespace Lesson2ModelleringEntity
         public Int16 Length { get; set; }
         public bool HasMusicVideo { get; set; }
         public string Lyrics { get; set; }
+        [Required]
         public Album Album { get; set; }
     }
 }

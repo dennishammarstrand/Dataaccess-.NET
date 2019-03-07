@@ -14,6 +14,7 @@ namespace Lesson2ModelleringEntity
             {
                 new Option<Action>("List Artists", List),
                 new Option<Action>("Add New Artist", Add),
+                new Option<Action>("Remove Artist", Remove),
                 new Option<Action>("List Artists From Sweden", ArtistsFromSweden),
                 new Option<Action>("List Artists Not From Sweden", ArtistsNotFromSweden),
                 new Option<Action>("List Artists From USA Or Canada", AristsFromUSAOrCanada),
@@ -49,6 +50,19 @@ namespace Lesson2ModelleringEntity
                 YearStarted = (Int16)ReadInput.Reader<int>("Year Started")
             };
             Program.database.Add(artist);
+            Program.database.SaveChanges();
+        }
+
+        static void Remove()
+        {
+            ReadInput.WriteUnderlined("Remove Artist");
+
+            Artist[] artists = Program.database.Artist.ToArray();
+            Option<Artist>[] artistMenu = artists.Select(x => new Option<Artist>(x.Name, x)).ToArray();
+
+            Artist artistToRemove = Menu.ShowMenu("Artists: ", artistMenu);
+
+            Program.database.Remove(artistToRemove);
             Program.database.SaveChanges();
         }
 
