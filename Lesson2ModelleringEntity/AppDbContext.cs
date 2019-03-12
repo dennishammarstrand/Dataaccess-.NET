@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Lesson2ModelleringEntity.Producer;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -24,6 +25,8 @@ namespace Lesson2ModelleringEntity
             modelBuilder.Entity<Album>().HasMany(s => s.Songs).WithOne(s => s.Album);
 
             modelBuilder.Entity<Song>().HasOne(a => a.Album);
+
+            modelBuilder.Entity<AlbumProducers>().HasKey(p => new { p.AlbumID, p.ProducerID });
         }
 
         public static async Task LoadDbOnStart()

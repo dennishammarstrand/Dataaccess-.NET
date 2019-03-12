@@ -5,11 +5,13 @@ using System.Text;
 
 namespace Lesson2ModelleringEntity.Producer
 {
-    class AlbumProducers
+    public class AlbumProducers
     {
         [Required]
         public int AlbumID { get; set; }
         [Required]
         public int ProducerID { get; set; }
+        public Album Album { get; set; }
+        public Producer Producer { get; set; }
     }
 }
